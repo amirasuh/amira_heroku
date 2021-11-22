@@ -1,12 +1,8 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import time
-
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
-import numpy as np
 
 st.header("Welcome To My First Application!")
 st.write("Creator: Amira")
@@ -27,12 +23,14 @@ elif  option=='Linear Regression':
     st.write("")
     st.write("This data approach student achievement in secondary education of two Portuguese schools. The data attributes include student grades, demographic, social and school related features) and it was collected by using school reports and questionnaires.")
     st.write("Ref: https://archive.ics.uci.edu/ml/datasets/student+performance")
+    
     import math
     import numpy as np
     from sklearn.linear_model import LinearRegression
     from sklearn.metrics import mean_squared_error
     import matplotlib.pyplot as plt
     import pandas as pd
+    
     data = pd.read_csv('student_mat.csv', sep=';')
     st.dataframe(data)
 
@@ -51,6 +49,7 @@ elif  option=='Linear Regression':
     from PIL import Image
     image = Image.open('fig.png')
     st.image(image)
+    
     st.write("Based on the chart, the black dots does not look like a good line.")
     # using rmse. the lesser, the better
     st.write(" RMSE: {}.".format(math.sqrt(mean_squared_error(y1, y1_pred))))
@@ -62,9 +61,11 @@ elif  option=='Linear Regression':
     X2 = X2[:, np.newaxis]
     model.fit(X2, y2) 
     y2_pred = model.predict(X2)
+    
     from PIL import Image
     image1 = Image.open('fig1.png')
     st.image(image1)
+    
     st.write("Based on the chart above, it is not a good result too since it is almost similar like the one before")
     st.write(" RMSE: {}.".format(math.sqrt(mean_squared_error(y2, y2_pred))))
 
@@ -72,11 +73,14 @@ elif  option=='Linear Regression':
     y3 = data.G3
     model.fit(X3, y3) 
     y3_pred = model.predict(X3)
+    
     from PIL import Image
     image2 = Image.open('fig2.png')
     st.image(image2)
+    
     st.write("Figure above is to help us to see the pattern.")
     st.write(" RMSE: {}.".format(math.sqrt(mean_squared_error(y3, y3_pred))))
+    
     data1 = data.groupby(["studytime","traveltime"]).mean()
     st.write("Table below shows the mean based on study time and travel time.")
     data1 = data.groupby(["studytime","traveltime"]).mean()
@@ -84,6 +88,7 @@ elif  option=='Linear Regression':
 
     data1 = data.groupby(["studytime","traveltime"]).mean().reset_index()
     plt.scatter(data1.studytime, data1.traveltime, s=2*(data1.G3)**3 , alpha=0.5)
+    
     from PIL import Image
     image3 = Image.open('fig3.png')
     st.image(image3)
@@ -93,16 +98,16 @@ elif option=='Logistic Regression':
     st.write("Logistic Regression")
     st.write("This dataset is from the National Institute of Diabetes and Digestive and Kidney Diseases.")
     st.write("Ref: https://www.kaggle.com/uciml/pima-indians-diabetes-database")
+    
     #import pandas
     import pandas as pd
     col_names = ['pregnant', 'glucose', 'bp', 'skin', 'insulin', 'bmi', 'pedigree', 'age', 'label']
-    # load dataset
     pima = pd.read_csv("diabetes.csv", header = 0, names = col_names)
     st.dataframe(pima)
 
     feature_cols = ['pregnant', 'insulin', 'bmi', 'age','glucose','bp','pedigree']
-    X = pima[feature_cols] # Features (x)
-    y = pima.label # Target variable (y)
+    X = pima[feature_cols] 
+    y = pima.label 
     
     # split X and y into training and testing sets
     from sklearn.model_selection import train_test_split
@@ -117,6 +122,7 @@ elif option=='Logistic Regression':
     from sklearn import metrics
     cnf_matrix = metrics.confusion_matrix(y_test, y_pred)
 
+    # display
     option = st.selectbox(
         'Model evaluation using Confusion Matrix:',
         ('Accuracy', 'Precision', 'Recall', 'f1 score', 'ROC AUC'))
@@ -146,16 +152,20 @@ elif  option=='Analysis Tool':
   st.write("#### A simple interactive analysis tools")
   st.write("This data approach student achievement in secondary education of two Portuguese schools. The data attributes include student grades, demographic, social and school related features) and it was collected by using school reports and questionnaires.")
   st.write("Data Ref: https://archive.ics.uci.edu/ml/datasets/student+performance")
+
   import pandas as pd
   import numpy as np
   import streamlit as st
+    
   st.write("Table below shows the original data.")
   df = pd.read_csv('student_mat.csv', sep = ";")
   st.dataframe(df)
 
   positions = list(df['school'].drop_duplicates())
   teams = list(df['age'].drop_duplicates())
+
   st.sidebar.write("Filter Choices:")
+    
   position_choice = st.sidebar.multiselect(
       'Type of school:', positions, default=positions)
   teams_choice = st.sidebar.multiselect(
@@ -165,9 +175,7 @@ elif  option=='Analysis Tool':
   df = df[df['age'].isin(teams_choice)]
 
   st.title(f"Student Analysis")
-
   st.markdown("Student dataframe based on your filter choices.")
-
   st.dataframe(df.sort_values('age',
               ascending=False).reset_index(drop=True))
 
