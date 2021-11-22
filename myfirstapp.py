@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 
 st.header("Welcome To My First Application!")
+st.write("Creator: Amira")
 
 option = st.sidebar.selectbox(
     'Select a models',
