@@ -20,7 +20,6 @@ if  option=='Choose:':
 elif  option=='Linear Regression':
     
     st.write("Simple Linear Regression.")
-    st.write("")
     st.write("This data approach student achievement in secondary education of two Portuguese schools. The data attributes include student grades, demographic, social and school related features) and it was collected by using school reports and questionnaires.")
     st.write("Ref: https://archive.ics.uci.edu/ml/datasets/student+performance")
     
@@ -50,7 +49,7 @@ elif  option=='Linear Regression':
     image = Image.open('fig.png')
     st.image(image)
     
-    st.write("Based on the chart, the black dots does not look like a good line.")
+    st.write("Based on the chart above, it does not look like a good line.")
     # using rmse. the lesser, the better
     st.write(" RMSE: {}.".format(math.sqrt(mean_squared_error(y1, y1_pred))))
     st.write(" The model coefficient : {}.".format(model.coef_))
@@ -78,7 +77,7 @@ elif  option=='Linear Regression':
     image2 = Image.open('fig2.png')
     st.image(image2)
     
-    st.write("Figure above is to help us to see the pattern.")
+    st.write("Figure above is to help us to see the pattern of the travel time based on study time.")
     st.write(" RMSE: {}.".format(math.sqrt(mean_squared_error(y3, y3_pred))))
     
     data1 = data.groupby(["studytime","traveltime"]).mean()
@@ -92,8 +91,7 @@ elif  option=='Linear Regression':
     from PIL import Image
     image3 = Image.open('fig3.png')
     st.image(image3)
-    st.write("The bubble plot size indicates the G3 results.")
-
+    
 elif option=='Logistic Regression':
     st.write("Logistic Regression")
     st.write("This dataset is from the National Institute of Diabetes and Digestive and Kidney Diseases.")
