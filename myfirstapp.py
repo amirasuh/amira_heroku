@@ -123,7 +123,7 @@ elif option=='Logistic Regression':
     # display
     option = st.selectbox(
         'Model evaluation using Confusion Matrix:',
-        ('Accuracy', 'Precision', 'Recall', 'f1 score', 'ROC AUC'))
+        ('Accuracy', 'Precision', 'Recall', 'ROC AUC'))
     st.write('You selected:', option)
 
     if  option=='Accuracy':
@@ -137,10 +137,6 @@ elif option=='Logistic Regression':
     elif  option=='Recall':
       from sklearn.metrics import recall_score
       st.write("The recall score: ", recall_score(y_test, y_pred))
-
-    elif  option=='fi score':
-      from sklearn.metrics import f1_score
-      st.write("The f1 score: ", f1_score(y_test, y_pred))
 
     elif  option=='ROC AUC':
       from sklearn.metrics import roc_auc_score
